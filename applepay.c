@@ -118,7 +118,7 @@ PHP_MINIT_FUNCTION(applepay)
 
     /** Register constants */
     #define APPLEPAY_CONST_EXPAND(c) \
-        zend_register_long_constant(#c, sizeof(#c)-strlen_adjust, c, CONST_CS | CONST_PERSISTENT, module_number TSRMLS_CC);
+        zend_register_long_constant(#c, sizeof(#c)-strlen_adjust, c, CONST_CS | CONST_PERSISTENT, module_number);
     #include "constants.h"
     #undef APPLEPAY_CONST_EXPAND
 
@@ -1036,7 +1036,7 @@ PHP_FUNCTION(applepay_verify_and_decrypt)
     memset(&state, 0, sizeof(applepay_state_t));
 
     // Parse params
-    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "apsppppll",
+    if (zend_parse_parameters(ZEND_NUM_ARGS(), "apsppppll",
         &z_cryptogram, &merch_pubkey_path, &merch_pubkey_path_len,
         &merch_privkey_b64, &merch_privkey_b64_len,
         &merch_privkey_pass, &merch_privkey_pass_len,
